@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>Solar Gang • Rep Hub</title>
+  <meta name="theme-color" content="#0b1017"/>
+
+  <style>
+    :root{
+      --bg:#070b12;
+      --bg2:#05070c;
+      --card:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.94);
+      --muted:rgba(255,255,255,.70);
+
+      --gold:#FBC909;
+      --teal:#3AADBB;
+      --green:#34c759;
+      --red:#ff453a;
+
+      --grad:linear-gradient(135deg,var(--gold),var(--teal));
+      --shadow:0 18px 70px rgba(0,0,0,.55);
+
+      --r:18px;
+      --r2:26px;
+
+      --tap:56px;
+      --safeT: env(safe-area-inset-top);
+      --safeB: env(safe-area-inset-bottom);
+      --safeL: env(safe-area-inset-left);
+      --safeR: env(safe-area-inset-right);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 650px at 10% -10%, rgba(251,201,9,.20), transparent 60%),
+        radial-gradient(950px 650px at 110% 20%, rgba(58,173,187,.18), transparent 60%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+      padding: calc(14px + var(--safeT)) calc(14px + var(--safeR)) calc(18px + var(--safeB)) calc(14px + var(--safeL));
+    }
+
+    .wrap{
+      max-width: 1020px;
+      margin: 0 auto;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:100%;
+    }
+
+    /* Header */
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 260px;
+      flex: 1 1 360px;
+    }
+    .logo{
+      width:56px;height:56px;
+      border-radius:18px;
+      background:#fff;
+      padding:7px;
+      object-fit:contain;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      flex:0 0 auto;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(18px, 4.8vw, 32px);
+      line-height:1.05;
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    .pillRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
+      font-weight: 1000;
+      font-size: 13px;
+      white-space:nowrap;
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--teal);box-shadow:0 0 0 4px rgba(58,173,187,.14)}
+
+    /* Big featured tile */
+    .hero{
+      border-radius: var(--r2);
+      background: linear-gradient(135deg, rgba(251,201,9,.16), rgba(58,173,187,.12));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:14px;
+    }
+    .hero:after{
+      content:"";
+      position:absolute; inset:-60%;
+      background: radial-gradient(circle at 25% 30%, rgba(255,255,255,.10), transparent 60%);
+      transform: rotate(20deg);
+      pointer-events:none;
+    }
+    .heroTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:1;
+    }
+    .heroTitle{
+      font-size: clamp(18px, 4.4vw, 28px);
+      font-weight: 1200;
+      margin:0;
+      line-height:1.1;
+    }
+    .heroNote{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.4;
+      max-width: 70ch;
+    }
+    .ctaRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+      position:relative;
+      z-index:1;
+    }
+    .btn{
+      height: var(--tap);
+      padding: 0 14px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 1200;
+      font-size: 15px;
+      cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      user-select:none;
+    }
+    .btn.primary{
+      background: var(--grad);
+      color:#06122a;
+      border-color: rgba(251,201,9,.22);
+    }
+    .btn:active{transform: translateY(1px)}
+
+    /* Grid menu */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+
+    .tile{
+      border-radius: var(--r2);
+      background: rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,.30);
+      text-decoration:none;
+      color:inherit;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 140px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tile:after{
+      content:"";
+      position:absolute; inset:-70%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.08), transparent 62%);
+      transform: rotate(20deg);
+      pointer-events:none;
+    }
+    .tile:active{transform: translateY(1px)}
+    .tileTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      position:relative;
+      z-index:1;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;height:44px;
+      border-radius:18px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      font-weight: 1200;
+      flex:0 0 auto;
+    }
+    .badge.gold{background: rgba(251,201,9,.14); border-color: rgba(251,201,9,.22)}
+    .badge.teal{background: rgba(58,173,187,.14); border-color: rgba(58,173,187,.22)}
+    .badge.green{background: rgba(52,199,89,.14); border-color: rgba(52,199,89,.22)}
+    .badge.red{background: rgba(255,69,58,.14); border-color: rgba(255,69,58,.22)}
+
+    .tileTitle{
+      margin:0;
+      font-size: 18px;
+      font-weight: 1200;
+      line-height:1.15;
+      position:relative;
+      z-index:1;
+    }
+    .tileDesc{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.4;
+      position:relative;
+      z-index:1;
+    }
+    .metaRow{
+      margin-top:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      position:relative;
+      z-index:1;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      font-weight: 1000;
+      white-space:nowrap;
+    }
+    .arrow{
+      font-weight:1200;
+      color: rgba(255,255,255,.80);
+      font-size: 14px;
+      white-space:nowrap;
+    }
+
+    /* Layout spans */
+    .span6{grid-column: span 6;}
+    .span12{grid-column: span 12;}
+
+    @media (max-width: 920px){
+      .span6{grid-column: span 12;}
+    }
+
+    /* Footer */
+    .foot{
+      margin-top:auto;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      padding-top:6px;
+    }
+    .foot a{color: rgba(255,255,255,.75); text-decoration:none}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <div class="top">
+      <div class="brand">
+        <img class="logo" src="./logo.jpg" alt="Logo" onerror="this.style.display='none'">
+        <div>
+          <h1>Rep Hub</h1>
+          <div class="sub">Quick access to every tool. Built for iPhone. Athlete energy. 🚀</div>
+        </div>
+      </div>
+
+      <div class="pillRow">
+        <div class="pill"><span class="dot"></span> Tap a tile to launch</div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="heroTop">
+        <div>
+          <p class="heroTitle">Everything in one place</p>
+          <div class="heroNote">
+            Training, competition updates, and the closer tool — all one tap away.
+            (Links open in a new tab so you can jump back here fast.)
+          </div>
+        </div>
+      </div>
+
+      <div class="ctaRow">
+        <a class="btn primary" href="https://solar-gang.github.io/Offer/" target="_blank" rel="noopener noreferrer">
+          Open Closer Tool
+        </a>
+        <a class="btn" href="https://solar-gang.github.io/SolarAppointmentGenerationtraining/" target="_blank" rel="noopener noreferrer">
+          Open Training Guide
+        </a>
+      </div>
+    </div>
+
+    <!-- MENU GRID -->
+    <div class="grid">
+
+      <!-- TRAINING -->
+      <a class="tile span6" href="https://solar-gang.github.io/SolarAppointmentGenerationtraining/" target="_blank" rel="noopener noreferrer">
+        <div class="tileTop">
+          <div class="badge teal">🏋️</div>
+          <div class="tag">Learn</div>
+        </div>
+        <h2 class="tileTitle">Sales Rep Training Guide</h2>
+        <p class="tileDesc">Learn the approach, bill knowledge, mindset, and how to set clean appointments.</p>
+        <div class="metaRow">
+          <div class="tag">Always available</div>
+          <div class="arrow">Open →</div>
+        </div>
+      </a>
+
+      <!-- COMPETITION -->
+      <a class="tile span6" href="https://solar-gang.github.io/Sits-Competiton/" target="_blank" rel="noopener noreferrer">
+        <div class="tileTop">
+          <div class="badge gold">🏆</div>
+          <div class="tag">Compete</div>
+        </div>
+        <h2 class="tileTitle">Sales Competition</h2>
+        <p class="tileDesc">Countdown + prizes + rules + updates. Track the month and stay locked in.</p>
+        <div class="metaRow">
+          <div class="tag">Updated daily</div>
+          <div class="arrow">Open →</div>
+        </div>
+      </a>
+
+      <!-- CLOSER TOOL -->
+      <a class="tile span12" href="https://solar-gang.github.io/Offer/" target="_blank" rel="noopener noreferrer">
+        <div class="tileTop">
+          <div class="badge green">⚡️</div>
+          <div class="tag">Close</div>
+        </div>
+        <h2 class="tileTitle">Closer Tool</h2>
+        <p class="tileDesc">Use this in the home to frame the problem, show options, and close clean.</p>
+        <div class="metaRow">
+          <div class="tag">Best on mobile</div>
+          <div class="arrow">Open →</div>
+        </div>
+      </a>
+
+      <!-- FUTURE TOOL PLACEHOLDER -->
+      <a class="tile span6" href="#" onclick="alert('Coming soon. Add the next tool link here.'); return false;">
+        <div class="tileTop">
+          <div class="badge red">➕</div>
+          <div class="tag">Next</div>
+        </div>
+        <h2 class="tileTitle">Future Tool</h2>
+        <p class="tileDesc">This tile is ready for the next tool you publish. One link swap and it’s live.</p>
+        <div class="metaRow">
+          <div class="tag">Coming soon</div>
+          <div class="arrow">Add →</div>
+        </div>
+      </a>
+
+      <!-- NOTES / QUICK LINKS -->
+      <div class="tile span6" role="group" aria-label="Quick notes">
+        <div class="tileTop">
+          <div class="badge teal">🧠</div>
+          <div class="tag">Mindset</div>
+        </div>
+        <h2 class="tileTitle">Daily Lock-In</h2>
+        <p class="tileDesc">Win the day. Own the night. Stay consistent. Log everything in Enzy.</p>
+        <div class="metaRow">
+          <div class="tag">No excuses</div>
+          <div class="arrow">—</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="foot">
+      <div>© <span id="yr"></span> Solar Gang • Rep Hub</div>
+      <div>
+        Tip: Add this page to your iPhone Home Screen for an “app” feel.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
