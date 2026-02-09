@@ -1,211 +1,274 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-  <title>Rep Hub</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Rep Hub</title>
 
-  <style>
-    :root{
-      /* Adjust these to match your logo if needed */
-      --primary:#0b4c6f;     /* main logo color */
-      --accent:#f5b700;      /* secondary / highlight */
-      --text:#0b1017;
-      --muted:#6b7280;
-      --bg:#ffffff;
-      --card:#f8fafc;
-      --border:#e5e7eb;
+<style>
+:root{
+  /* Adjust if needed to match logo exactly */
+  --primary:#0b4c6f;
+  --accent:#f5b700;
+  --text:#0b1017;
+  --muted:#6b7280;
+  --bg:#ffffff;
+  --card:#f8fafc;
+  --border:#e5e7eb;
 
-      --r:16px;
-      --tap:64px;
-    }
+  --r:16px;
+  --tap:66px;
+}
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
-      background:var(--bg);
-      color:var(--text);
-    }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
+  background:var(--bg);
+  color:var(--text);
+}
 
-    .wrap{
-      max-width:520px;
-      margin:0 auto;
-      min-height:100%;
-      padding:16px;
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-    }
+.wrap{
+  max-width:520px;
+  margin:0 auto;
+  min-height:100%;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
 
-    /* Header */
-    .header{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:8px 0;
-    }
-    .logo{
-      width:48px;
-      height:48px;
-      border-radius:12px;
-      object-fit:contain;
-      background:#fff;
-      border:1px solid var(--border);
-      padding:6px;
-    }
-    .title h1{
-      margin:0;
-      font-size:20px;
-      font-weight:800;
-    }
-    .title p{
-      margin:4px 0 0;
-      font-size:13px;
-      color:var(--muted);
-    }
+/* Header */
+.header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 0 4px;
+}
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  object-fit:contain;
+  background:#fff;
+  border:1px solid var(--border);
+  padding:6px;
+}
+.header h1{
+  margin:0;
+  font-size:20px;
+  font-weight:800;
+}
+.header p{
+  margin:4px 0 0;
+  font-size:13px;
+  color:var(--muted);
+}
 
-    /* Menu */
-    .menu{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
+/* Section title */
+.section{
+  margin-top:4px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
 
-    .tile{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:16px;
-      min-height:var(--tap);
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--r);
-      text-decoration:none;
-      color:inherit;
-    }
+/* Menu tiles */
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
 
-    .tile:active{
-      transform:scale(.99);
-    }
+.tile{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px;
+  min-height:var(--tap);
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  text-decoration:none;
+  color:inherit;
+}
 
-    .tileLeft{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+.tile:active{transform:scale(.99)}
 
-    .icon{
-      width:44px;
-      height:44px;
-      border-radius:12px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:20px;
-      font-weight:700;
-      color:#fff;
-      background:var(--primary);
-    }
+.tileLeft{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    .tileText h2{
-      margin:0;
-      font-size:16px;
-      font-weight:700;
-    }
-    .tileText p{
-      margin:4px 0 0;
-      font-size:13px;
-      color:var(--muted);
-    }
+.icon{
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  font-weight:700;
+  color:#fff;
+  background:var(--primary);
+}
 
-    .arrow{
-      font-size:18px;
-      color:var(--muted);
-    }
+.icon.accent{background:var(--accent); color:#000}
 
-    /* Footer */
-    .footer{
-      margin-top:auto;
-      text-align:center;
-      font-size:12px;
-      color:var(--muted);
-      padding:12px 0 4px;
-    }
-  </style>
+.tileText h2{
+  margin:0;
+  font-size:16px;
+  font-weight:700;
+}
+.tileText p{
+  margin:4px 0 0;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.arrow{
+  font-size:20px;
+  color:var(--muted);
+}
+
+/* Footer */
+.footer{
+  margin-top:auto;
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  padding:12px 0 4px;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
+<div class="wrap">
 
-    <!-- HEADER -->
-    <div class="header">
-      <img src="./logo.jpg" alt="Logo" class="logo">
-      <div class="title">
-        <h1>Rep Hub</h1>
-        <p>All tools. One place.</p>
+  <!-- HEADER -->
+  <div class="header">
+    <img src="./logo.jpg" alt="Logo" class="logo">
+    <div>
+      <h1>Rep Hub</h1>
+      <p>All tools. One place.</p>
+    </div>
+  </div>
+
+  <!-- SALES TOOLS -->
+  <div class="section">Sales Tools</div>
+  <div class="menu">
+
+    <a class="tile" href="https://solar-gang.github.io/Offer/" target="_blank">
+      <div class="tileLeft">
+        <div class="icon">⚡️</div>
+        <div class="tileText">
+          <h2>Closer Tool</h2>
+          <p>In-home presentation & close</p>
+        </div>
       </div>
-    </div>
+      <div class="arrow">›</div>
+    </a>
 
-    <!-- MENU -->
-    <div class="menu">
-
-      <!-- TRAINING -->
-      <a class="tile" href="https://solar-gang.github.io/SolarAppointmentGenerationtraining/" target="_blank" rel="noopener">
-        <div class="tileLeft">
-          <div class="icon">📘</div>
-          <div class="tileText">
-            <h2>Training Guide</h2>
-            <p>Learn the approach, bills, and mindset</p>
-          </div>
+    <a class="tile" href="https://solar-gang.github.io/SolarAppointmentGenerationtraining/" target="_blank">
+      <div class="tileLeft">
+        <div class="icon">📘</div>
+        <div class="tileText">
+          <h2>Training Guide</h2>
+          <p>Approach, bills, mindset</p>
         </div>
-        <div class="arrow">›</div>
-      </a>
-
-      <!-- COMPETITION -->
-      <a class="tile" href="https://solar-gang.github.io/Sits-Competiton/" target="_blank" rel="noopener">
-        <div class="tileLeft">
-          <div class="icon">🏆</div>
-          <div class="tileText">
-            <h2>Sales Competition</h2>
-            <p>Prizes, rules, countdown, updates</p>
-          </div>
-        </div>
-        <div class="arrow">›</div>
-      </a>
-
-      <!-- CLOSER TOOL -->
-      <a class="tile" href="https://solar-gang.github.io/Offer/" target="_blank" rel="noopener">
-        <div class="tileLeft">
-          <div class="icon">⚡️</div>
-          <div class="tileText">
-            <h2>Closer Tool</h2>
-            <p>Use in-home to frame & close</p>
-          </div>
-        </div>
-        <div class="arrow">›</div>
-      </a>
-
-      <!-- FUTURE -->
-      <div class="tile" onclick="alert('Future tool coming soon');">
-        <div class="tileLeft">
-          <div class="icon" style="background:var(--accent)">➕</div>
-          <div class="tileText">
-            <h2>Future Tool</h2>
-            <p>Next tool will live here</p>
-          </div>
-        </div>
-        <div class="arrow">›</div>
       </div>
+      <div class="arrow">›</div>
+    </a>
 
-    </div>
-
-    <div class="footer">
-      Tip: Add this page to your iPhone Home Screen
-    </div>
+    <a class="tile" href="https://solar-gang.github.io/Sits-Competiton/" target="_blank">
+      <div class="tileLeft">
+        <div class="icon">🏆</div>
+        <div class="tileText">
+          <h2>Sales Competition</h2>
+          <p>Prizes, rules & countdown</p>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </a>
 
   </div>
+
+  <!-- OPERATIONS -->
+  <div class="section">Operations</div>
+  <div class="menu">
+
+    <a class="tile" href="https://v2.aurorasolar.com/login" target="_blank">
+      <div class="tileLeft">
+        <div class="icon accent">☀️</div>
+        <div class="tileText">
+          <h2>Aurora</h2>
+          <p>Design & shading analysis</p>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </a>
+
+    <a class="tile" href="https://app.enzy.co/login" target="_blank">
+      <div class="tileLeft">
+        <div class="icon accent">🚪</div>
+        <div class="tileText">
+          <h2>Enzy</h2>
+          <p>Doors, sits & tracking</p>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </a>
+
+    <a class="tile" href="https://app.rdclservices.com/job-form/68545792621973ddfa09f682/685458fa621973ddfa09f686" target="_blank">
+      <div class="tileLeft">
+        <div class="icon accent">📅</div>
+        <div class="tileText">
+          <h2>Site Survey Schedule</h2>
+          <p>Book surveys & installs</p>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </a>
+
+  </div>
+
+  <!-- RESEARCH -->
+  <div class="section">Research</div>
+  <div class="menu">
+
+    <a class="tile" href="https://www.sce.com/customer-service-center/help-center/copy-of-your-bill-guest" target="_blank">
+      <div class="tileLeft">
+        <div class="icon">💡</div>
+        <div class="tileText">
+          <h2>SCE Guest Bill</h2>
+          <p>Pull customer bills</p>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </a>
+
+    <a class="tile" href="https://www.redfin.com" target="_blank">
+      <div class="tileLeft">
+        <div class="icon">🏠</div>
+        <div class="tileText">
+          <h2>Redfin</h2>
+          <p>Home value & ownership check</p>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    Tip: Add this page to your iPhone Home Screen
+  </div>
+
+</div>
 </body>
 </html>
