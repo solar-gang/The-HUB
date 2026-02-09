@@ -7,17 +7,19 @@
 
 <style>
 :root{
-  /* Adjust if needed to match logo exactly */
-  --primary:#0b4c6f;
-  --accent:#f5b700;
-  --text:#0b1017;
-  --muted:#6b7280;
-  --bg:#ffffff;
-  --card:#f8fafc;
-  --border:#e5e7eb;
+  /* LOS / Solar Gang style */
+  --bg:#0b1017;
+  --card:#121826;
+  --border:#1f2937;
+
+  --primary:#FBC909;   /* gold */
+  --accent:#3AADBB;    /* teal */
+
+  --text:#ffffff;
+  --muted:#9ca3af;
 
   --r:16px;
-  --tap:66px;
+  --tap:68px;
 }
 
 *{box-sizing:border-box}
@@ -39,12 +41,12 @@ body{
   gap:16px;
 }
 
-/* Header */
+/* HEADER */
 .header{
   display:flex;
   align-items:center;
   gap:12px;
-  padding:8px 0 4px;
+  padding:6px 0 2px;
 }
 .logo{
   width:48px;
@@ -52,7 +54,6 @@ body{
   border-radius:12px;
   object-fit:contain;
   background:#fff;
-  border:1px solid var(--border);
   padding:6px;
 }
 .header h1{
@@ -66,17 +67,17 @@ body{
   color:var(--muted);
 }
 
-/* Section title */
+/* SECTION LABEL */
 .section{
-  margin-top:4px;
-  font-size:13px;
+  margin-top:6px;
+  font-size:12px;
   font-weight:700;
   color:var(--muted);
   text-transform:uppercase;
   letter-spacing:.4px;
 }
 
-/* Menu tiles */
+/* MENU */
 .menu{
   display:flex;
   flex-direction:column;
@@ -114,11 +115,14 @@ body{
   justify-content:center;
   font-size:20px;
   font-weight:700;
-  color:#fff;
+  color:#000;
   background:var(--primary);
 }
 
-.icon.accent{background:var(--accent); color:#000}
+.icon.teal{
+  background:var(--accent);
+  color:#00363d;
+}
 
 .tileText h2{
   margin:0;
@@ -136,7 +140,7 @@ body{
   color:var(--muted);
 }
 
-/* Footer */
+/* FOOTER */
 .footer{
   margin-top:auto;
   text-align:center;
@@ -204,7 +208,7 @@ body{
 
     <a class="tile" href="https://v2.aurorasolar.com/login" target="_blank">
       <div class="tileLeft">
-        <div class="icon accent">☀️</div>
+        <div class="icon teal">☀️</div>
         <div class="tileText">
           <h2>Aurora</h2>
           <p>Design & shading analysis</p>
@@ -215,7 +219,7 @@ body{
 
     <a class="tile" href="https://app.enzy.co/login" target="_blank">
       <div class="tileLeft">
-        <div class="icon accent">🚪</div>
+        <div class="icon teal">🚪</div>
         <div class="tileText">
           <h2>Enzy</h2>
           <p>Doors, sits & tracking</p>
@@ -226,7 +230,7 @@ body{
 
     <a class="tile" href="https://app.rdclservices.com/job-form/68545792621973ddfa09f682/685458fa621973ddfa09f686" target="_blank">
       <div class="tileLeft">
-        <div class="icon accent">📅</div>
+        <div class="icon teal">📅</div>
         <div class="tileText">
           <h2>Site Survey Schedule</h2>
           <p>Book surveys & installs</p>
@@ -257,7 +261,7 @@ body{
         <div class="icon">🏠</div>
         <div class="tileText">
           <h2>Redfin</h2>
-          <p>Home value & ownership check</p>
+          <p>Ownership & home details</p>
         </div>
       </div>
       <div class="arrow">›</div>
