@@ -11,14 +11,14 @@
   --card:#121826;
   --border:#1f2937;
 
-  --primary:#FBC909;
-  --accent:#3AADBB;
+  --primary:#FBC909;   /* gold */
+  --accent:#3AADBB;    /* teal */
 
   --text:#ffffff;
   --muted:#9ca3af;
 
   --r:16px;
-  --tap:68px;
+  --tap:70px;
 }
 
 *{box-sizing:border-box}
@@ -76,7 +76,11 @@ body{
 }
 
 /* MENU */
-.menu{display:flex;flex-direction:column;gap:12px}
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
 
 .tile{
   display:flex;
@@ -113,7 +117,10 @@ body{
   background:var(--primary);
 }
 
-.icon.teal{background:var(--accent);color:#000}
+.icon.teal{
+  background:var(--accent);
+  color:#000;
+}
 
 .tileText h2{
   margin:0;
@@ -126,7 +133,10 @@ body{
   color:var(--muted);
 }
 
-.arrow{font-size:20px;color:var(--muted)}
+.arrow{
+  font-size:20px;
+  color:var(--muted);
+}
 
 /* FOOTER */
 .footer{
@@ -161,6 +171,17 @@ body{
         <div class="tileText">
           <h2>Closer Tool</h2>
           <p>In-home presentation & close</p>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </a>
+
+    <a class="tile" href="https://solar-gang.github.io/Hope-Approach/" target="_blank">
+      <div class="tileLeft">
+        <div class="icon">🚪</div>
+        <div class="tileText">
+          <h2>Door Approach</h2>
+          <p>Knock script & opener flow</p>
         </div>
       </div>
       <div class="arrow">›</div>
@@ -207,7 +228,7 @@ body{
 
     <a class="tile" href="https://app.enzy.co/login" target="_blank">
       <div class="tileLeft">
-        <div class="icon teal">🚪</div>
+        <div class="icon teal">📍</div>
         <div class="tileText">
           <h2>Enzy</h2>
           <p>Doors, sits & tracking</p>
@@ -265,8 +286,8 @@ body{
       <div class="tileLeft">
         <div class="icon">📈</div>
         <div class="tileText">
-          <h2>SCE 13% Bill Increase</h2>
-          <p>Official rate change explainer</p>
+          <h2>SCE 13% Rate Increase</h2>
+          <p>Official SCE explanation</p>
         </div>
       </div>
       <div class="arrow">›</div>
@@ -277,7 +298,7 @@ body{
         <div class="icon">📰</div>
         <div class="tileText">
           <h2>LA Times • SCE Article</h2>
-          <p>News coverage of rate case</p>
+          <p>News on Edison rate case</p>
         </div>
       </div>
       <div class="arrow">›</div>
@@ -285,10 +306,10 @@ body{
 
     <a class="tile" href="https://www.tesla.com/support/energy/powerwall/virtual-power-plant" target="_blank">
       <div class="tileLeft">
-        <div class="icon teal">⚡️</div>
+        <div class="icon teal">🔋</div>
         <div class="tileText">
           <h2>Tesla Virtual Power Plant</h2>
-          <p>Powerwall VPP info</p>
+          <p>Powerwall VPP overview</p>
         </div>
       </div>
       <div class="arrow">›</div>
