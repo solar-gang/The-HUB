@@ -3,324 +3,531 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Rep Hub</title>
+<title>Approach Training | Non-Solar Homes</title>
+<meta name="theme-color" content="#0b1017"/>
 
 <style>
-:root{
-  --bg:#0b1017;
-  --card:#121826;
-  --border:#1f2937;
+  :root{
+    --bg:#0b1017;
+    --panel:#111a25;
+    --stroke:rgba(255,255,255,.10);
+    --text:rgba(255,255,255,.94);
+    --muted:rgba(255,255,255,.70);
+    --muted2:rgba(255,255,255,.55);
 
-  --primary:#FBC909;   /* gold */
-  --accent:#3AADBB;    /* teal */
+    /* L.O.S.-style accents (adjust later if you want exact hex codes) */
+    --gold:#FBC909;
+    --teal:#3AADBB;
+    --grad:linear-gradient(135deg,var(--gold),var(--teal));
 
-  --text:#ffffff;
-  --muted:#9ca3af;
+    --r:18px;
+    --shadow:0 16px 55px rgba(0,0,0,.42);
 
-  --r:16px;
-  --tap:70px;
-}
+    --safeT: env(safe-area-inset-top);
+    --safeB: env(safe-area-inset-bottom);
+  }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
-  background:var(--bg);
-  color:var(--text);
-}
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:
+      radial-gradient(1000px 600px at 18% -8%, rgba(251,201,9,.16), transparent 60%),
+      radial-gradient(900px 540px at 110% 10%, rgba(58,173,187,.16), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    padding: calc(14px + var(--safeT)) 14px calc(18px + var(--safeB));
+  }
 
-.wrap{
-  max-width:520px;
-  margin:0 auto;
-  min-height:100%;
-  padding:16px;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
+  .wrap{max-width:920px;margin:0 auto}
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;margin-bottom:12px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;min-width:0}
+  .logo{
+    width:44px;height:44px;border-radius:14px;
+    background:var(--panel);
+    display:grid;place-items:center;
+    border:1px solid var(--stroke);
+    overflow:hidden;
+    box-shadow:0 10px 28px rgba(0,0,0,.25);
+  }
+  .logo img{width:100%;height:100%;object-fit:cover;display:block}
+  .title{min-width:0}
+  h1{margin:0;font-size:18px;line-height:1.15}
+  .sub{margin-top:3px;color:var(--muted);font-size:12.5px}
 
-/* HEADER */
-.header{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.logo{
-  width:48px;
-  height:48px;
-  border-radius:12px;
-  object-fit:contain;
-  background:#fff;
-  padding:6px;
-}
-.header h1{
-  margin:0;
-  font-size:20px;
-  font-weight:800;
-}
-.header p{
-  margin:4px 0 0;
-  font-size:13px;
-  color:var(--muted);
-}
+  /* Coach toggle (kept, but minimal) */
+  .toggle{
+    display:flex;align-items:center;gap:10px;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--stroke);
+    border-radius:999px;
+    padding:8px 10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  .toggle label{font-size:12.5px;color:var(--muted);user-select:none;white-space:nowrap}
+  .switch{
+    width:46px;height:26px;border-radius:999px;
+    background:rgba(255,255,255,.12);
+    position:relative;cursor:pointer;border:1px solid var(--stroke);
+  }
+  .knob{
+    position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:999px;
+    background:linear-gradient(135deg,rgba(255,255,255,.85),rgba(255,255,255,.45));
+    transition:transform .18s ease;
+  }
+  body.coach .knob{transform:translateX(20px)}
+  body.coach .toggle label b{color:var(--text)}
 
-/* SECTION LABEL */
-.section{
-  margin-top:6px;
-  font-size:12px;
-  font-weight:700;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.4px;
-}
+  /* Cards */
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border:1px solid var(--stroke);
+    border-radius:var(--r);
+    box-shadow:var(--shadow);
+    padding:14px;
+    margin:12px 0;
+  }
+  .cardTop{
+    display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+    margin-bottom:10px;
+  }
+  .kicker{
+    font-size:12px;color:var(--muted);
+    letter-spacing:.18em;text-transform:uppercase;
+  }
+  .card h2{margin:4px 0 0;font-size:18px}
 
-/* MENU */
-.menu{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
+  /* Minimal meta line */
+  .meta{
+    color:var(--muted2);
+    font-size:12.5px;
+    line-height:1.25;
+  }
 
-.tile{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:16px;
-  min-height:var(--tap);
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  text-decoration:none;
-  color:inherit;
-}
+  /* Audio + controls */
+  .audioWrap{display:flex;flex-direction:column;gap:10px;margin:10px 0 0}
+  audio{width:100%}
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+  .btn{
+    appearance:none;border:1px solid var(--stroke);
+    background:rgba(255,255,255,.06);
+    color:var(--text);
+    padding:10px 12px;border-radius:12px;
+    font-weight:700;font-size:13px;
+    cursor:pointer;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{
+    border-color:rgba(251,201,9,.35);
+    background:linear-gradient(135deg, rgba(251,201,9,.20), rgba(58,173,187,.10));
+  }
 
-.tile:active{transform:scale(.99)}
+  /* Key line (always visible) */
+  .keyline{
+    margin-top:12px;
+    padding:10px 12px;border-radius:14px;
+    background:rgba(251,201,9,.10);
+    border:1px solid rgba(251,201,9,.24);
+  }
+  .keyline .tag{
+    display:block;
+    font-size:11px;
+    color:rgba(255,255,255,.65);
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    margin-bottom:6px;
+  }
 
-.tileLeft{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+  /* Script collapses (default CLOSED to reduce visual load) */
+  details{
+    margin-top:10px;
+    border:1px solid var(--stroke);
+    background:rgba(0,0,0,.18);
+    border-radius:14px;
+    padding:10px 12px;
+  }
+  details summary{
+    cursor:pointer;
+    color:var(--text);
+    font-weight:800;
+    list-style:none;
+  }
+  details summary::-webkit-details-marker{display:none}
+  .script{margin-top:8px;color:var(--text);line-height:1.45}
+  .script p{margin:.55em 0}
 
-.icon{
-  width:46px;
-  height:46px;
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  font-weight:700;
-  color:#000;
-  background:var(--primary);
-}
+  /* Coach notes hidden unless coach mode on */
+  .info{
+    display:none;
+    margin-top:10px;
+    padding:10px 12px;border-radius:14px;
+    border:1px solid rgba(58,173,187,.28);
+    background:rgba(58,173,187,.10);
+    color:rgba(255,255,255,.90);
+    line-height:1.35;
+  }
+  body.coach .info{display:block}
 
-.icon.teal{
-  background:var(--accent);
-  color:#000;
-}
+  footer{
+    margin-top:18px;
+    color:var(--muted2);
+    font-size:12.5px;
+    text-align:center;
+  }
 
-.tileText h2{
-  margin:0;
-  font-size:16px;
-  font-weight:700;
-}
-.tileText p{
-  margin:4px 0 0;
-  font-size:13px;
-  color:var(--muted);
-}
-
-.arrow{
-  font-size:20px;
-  color:var(--muted);
-}
-
-/* FOOTER */
-.footer{
-  margin-top:auto;
-  text-align:center;
-  font-size:12px;
-  color:var(--muted);
-  padding:16px 0 4px;
-}
+  @media (min-width: 820px){
+    h1{font-size:20px}
+    .card{padding:16px}
+  }
 </style>
 </head>
 
 <body>
 <div class="wrap">
 
-  <!-- HEADER -->
-  <div class="header">
-    <img src="./logo.jpg" alt="Logo" class="logo">
-    <div>
-      <h1>Rep Hub</h1>
-      <p>All tools. One place.</p>
+<header>
+  <div class="brand">
+    <div class="logo" title="L.O.S.">
+      <!-- Put your logo file in repo root and rename below to match -->
+      <img src="los-logo.png" alt="L.O.S. logo" onerror="this.style.display='none'">
+    </div>
+    <div class="title">
+      <h1>Approach Training (Non-Solar Homes)</h1>
+      <div class="sub">Simple flow • Audio-first • Tap to reveal scripts</div>
     </div>
   </div>
 
-  <!-- SALES TOOLS -->
-  <div class="section">Sales Tools</div>
-  <div class="menu">
+  <div class="toggle" title="Coach Mode adds quick “why this works” notes">
+    <label><b>Coach</b></label>
+    <div class="switch" id="coachSwitch" role="switch" aria-checked="false" tabindex="0">
+      <div class="knob"></div>
+    </div>
+  </div>
+</header>
 
-    <a class="tile" href="https://solar-gang.github.io/Offer/" target="_blank">
-      <div class="tileLeft">
-        <div class="icon">⚡️</div>
-        <div class="tileText">
-          <h2>Closer Tool</h2>
-          <p>In-home presentation & close</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
-    <a class="tile" href="https://solar-gang.github.io/Hope-Approach/" target="_blank">
-      <div class="tileLeft">
-        <div class="icon">🚪</div>
-        <div class="tileText">
-          <h2>Door Approach</h2>
-          <p>Knock script & opener flow</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
-    <a class="tile" href="https://solar-gang.github.io/SolarAppointmentGenerationtraining/" target="_blank">
-      <div class="tileLeft">
-        <div class="icon">📘</div>
-        <div class="tileText">
-          <h2>Training Guide</h2>
-          <p>Approach, bills, mindset</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
-    <a class="tile" href="https://solar-gang.github.io/Sits-Competiton/" target="_blank">
-      <div class="tileLeft">
-        <div class="icon">🏆</div>
-        <div class="tileText">
-          <h2>Sales Competition</h2>
-          <p>Prizes, rules & countdown</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
+<!-- PART 1 -->
+<section class="card" id="part1">
+  <div class="cardTop">
+    <div>
+      <div class="kicker">Part 1</div>
+      <h2>Intro</h2>
+      <div class="meta">Goal: credibility + permission</div>
+    </div>
+    <button class="btn" onclick="scrollToId('part2')">Next</button>
   </div>
 
-  <!-- OPERATIONS -->
-  <div class="section">Operations</div>
-  <div class="menu">
-
-    <a class="tile" href="https://v2.aurorasolar.com/login" target="_blank">
-      <div class="tileLeft">
-        <div class="icon teal">☀️</div>
-        <div class="tileText">
-          <h2>Aurora</h2>
-          <p>Design & shading analysis</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
-    <a class="tile" href="https://app.enzy.co/login" target="_blank">
-      <div class="tileLeft">
-        <div class="icon teal">📍</div>
-        <div class="tileText">
-          <h2>Enzy</h2>
-          <p>Doors, sits & tracking</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
-    <a class="tile" href="https://app.rdclservices.com/job-form/68545792621973ddfa09f682/685458fa621973ddfa09f686" target="_blank">
-      <div class="tileLeft">
-        <div class="icon teal">📅</div>
-        <div class="tileText">
-          <h2>Site Survey Schedule</h2>
-          <p>Book surveys & installs</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
+  <div class="audioWrap">
+    <audio controls preload="none" id="audio1">
+      <source src="approach-intro.m4a" type="audio/mp4">
+      Your browser does not support audio.
+    </audio>
+    <div class="row">
+      <button class="btn primary" onclick="loopSection('audio1',3)">Loop ×3</button>
+      <button class="btn" onclick="playThenNext('audio1','part2')">Play → Next</button>
+    </div>
   </div>
 
-  <!-- RESEARCH -->
-  <div class="section">Research</div>
-  <div class="menu">
-
-    <a class="tile" href="https://www.sce.com/customer-service-center/help-center/copy-of-your-bill-guest" target="_blank">
-      <div class="tileLeft">
-        <div class="icon">💡</div>
-        <div class="tileText">
-          <h2>SCE Guest Bill</h2>
-          <p>Pull customer bills</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
-    <a class="tile" href="https://www.redfin.com" target="_blank">
-      <div class="tileLeft">
-        <div class="icon">🏠</div>
-        <div class="tileText">
-          <h2>Redfin</h2>
-          <p>Ownership & home details</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
+  <div class="keyline">
+    <span class="tag">Key line</span>
+    “Has Edison come by, or has anyone talked to you about the changes they made?”
   </div>
 
-  <!-- MARKET RESOURCES -->
-  <div class="section">Market Resources</div>
-  <div class="menu">
+  <details>
+    <summary>Show Script</summary>
+    <div class="script">
+      <p>“Hey, how’s it going? Is this the Johnson residence?</p>
+      <p>Perfect — you must be Steve. Awesome. I’m Carlos.</p>
+      <p>I’m actually working on a lot of the power projects here in the area. You’ve probably noticed those small white boxes popping up on the side of some homes.</p>
+      <p>The reason they’re doing that — and the reason we’re out here — is because of the Time-of-Use changes. Has Edison come by, or has anyone talked to you about the changes they made?”</p>
+    </div>
+    <div class="info">
+      <b style="display:block;margin-bottom:6px;">Why this works</b>
+      Low pressure. You’re not pitching—just checking what they’ve been told. That keeps the door open.
+    </div>
+  </details>
+</section>
 
-    <a class="tile" href="https://www.sce.com/save-money/rates-financing/residential-rate-plans/understanding-updates-to-your-bill" target="_blank">
-      <div class="tileLeft">
-        <div class="icon">📈</div>
-        <div class="tileText">
-          <h2>SCE 13% Rate Increase</h2>
-          <p>Official SCE explanation</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
-    <a class="tile" href="https://www.latimes.com/business/story/2025-05-22/edison-general-rate-case" target="_blank">
-      <div class="tileLeft">
-        <div class="icon">📰</div>
-        <div class="tileText">
-          <h2>LA Times • SCE Article</h2>
-          <p>News on Edison rate case</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
-    <a class="tile" href="https://www.tesla.com/support/energy/powerwall/virtual-power-plant" target="_blank">
-      <div class="tileLeft">
-        <div class="icon teal">🔋</div>
-        <div class="tileText">
-          <h2>Tesla Virtual Power Plant</h2>
-          <p>Powerwall VPP overview</p>
-        </div>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-
+<!-- PART 2 (DEFAULT: GRID UPGRADES) -->
+<section class="card" id="part2">
+  <div class="cardTop">
+    <div>
+      <div class="kicker">Part 2</div>
+      <h2>Problem</h2>
+      <div class="meta">Default: Edison grid upgrades → costs passed to homeowners</div>
+    </div>
+    <button class="btn" onclick="scrollToId('part3')">Next</button>
   </div>
 
-  <div class="footer">
-    Tip: Add this page to your iPhone Home Screen
+  <div class="audioWrap">
+    <audio controls preload="none" id="audio2">
+      <source src="approach-problem-grid-upgrades.m4a" type="audio/mp4">
+      Your browser does not support audio.
+    </audio>
+    <div class="row">
+      <button class="btn primary" onclick="loopSection('audio2',3)">Loop ×3</button>
+      <button class="btn" onclick="playThenNext('audio2','part3')">Play → Next</button>
+    </div>
   </div>
+
+  <div class="keyline">
+    <span class="tag">Key line</span>
+    “Even if your habits don’t change, the bill can still climb because the pricing keeps moving.”
+  </div>
+
+  <details>
+    <summary>Show Script</summary>
+    <div class="script">
+      <p>“Edison’s been doing major grid upgrades and infrastructure work, and the cost gets passed back to homeowners through rate increases.</p>
+      <p>So even if your habits don’t change, the bill can still climb because the pricing keeps moving.</p>
+      <p>Have you noticed that at all?”</p>
+    </div>
+    <div class="info">
+      <b style="display:block;margin-bottom:6px;">Why this works</b>
+      It removes blame from the homeowner. Most people will agree quickly and keep listening.
+    </div>
+  </details>
+
+  <!-- Optional TOU button (only shown if you upload approach-tou.m4a later) -->
+  <div class="info" style="margin-top:12px">
+    <b style="display:block;margin-bottom:6px;">Optional</b>
+    When you add <code style="color:var(--text)">approach-tou.m4a</code>, we can re-enable a TOU alternate without changing the page layout.
+  </div>
+</section>
+
+<!-- PART 3 (DEFAULT: VPP) -->
+<section class="card" id="part3">
+  <div class="cardTop">
+    <div>
+      <div class="kicker">Part 3</div>
+      <h2>Solution</h2>
+      <div class="meta">Default: VPP program</div>
+    </div>
+    <button class="btn" onclick="scrollToId('part4')">Next</button>
+  </div>
+
+  <div class="audioWrap">
+    <audio controls preload="none" id="audio3">
+      <source src="approach-solution-vpp.m4a" type="audio/mp4">
+      Your browser does not support audio.
+    </audio>
+    <div class="row">
+      <button class="btn primary" onclick="loopSection('audio3',3)">Loop ×3</button>
+      <button class="btn" onclick="playThenNext('audio3','part4')">Play → Next</button>
+    </div>
+  </div>
+
+  <div class="keyline">
+    <span class="tag">Key line</span>
+    “Store power and use it when the grid is stressed.”
+  </div>
+
+  <details>
+    <summary>Show Script</summary>
+    <div class="script">
+      <p>“A big part of the solution is storage, and that’s where the VPP program comes in.</p>
+      <p>It’s designed to help homeowners store power and use it when the grid is stressed—so you’re not stuck paying the worst pricing when everyone needs electricity.</p>
+      <p>It also gives you outage protection when the grid goes down.”</p>
+    </div>
+    <div class="info">
+      <b style="display:block;margin-bottom:6px;">Why this works</b>
+      It sounds logical (not salesy): you match the exact problem they just agreed with.
+    </div>
+  </details>
+</section>
+
+<!-- PART 4 -->
+<section class="card" id="part4">
+  <div class="cardTop">
+    <div>
+      <div class="kicker">Part 4</div>
+      <h2>Qualification + Savings</h2>
+      <div class="meta">Goal: set rules + build trust</div>
+    </div>
+    <button class="btn" onclick="scrollToId('part5')">Next</button>
+  </div>
+
+  <div class="audioWrap">
+    <audio controls preload="none" id="audio4">
+      <source src="approach-qualification.m4a" type="audio/mp4">
+      Your browser does not support audio.
+    </audio>
+    <div class="row">
+      <button class="btn primary" onclick="loopSection('audio4',3)">Loop ×3</button>
+      <button class="btn" onclick="playThenNext('audio4','part5')">Play → Next</button>
+    </div>
+  </div>
+
+  <div class="keyline">
+    <span class="tag">Key line</span>
+    “We must be able to provide you savings on day one — otherwise, we can’t help you.”
+  </div>
+
+  <details>
+    <summary>Show Script</summary>
+    <div class="script">
+      <p>“My job is really simple — it’s to find out which homes might qualify for the program.</p>
+      <p>We make sure you have a good roof, that you get enough sunlight, and that you can produce the power.</p>
+      <p>We also make sure we can store that power for you.</p>
+      <p>If everything checks out and looks good, we’re able to provide a savings report. That report shows you what kind of savings you would have starting day one.</p>
+      <p>There’s nothing you have to pay out of pocket and nothing due upfront.</p>
+      <p>You must be able to qualify for the program, and we must be able to provide you savings on day one — otherwise, we can’t help you.</p>
+      <p>Here’s a sample bill from one of our customers. This is their July payment. As you can see, it’s only about twenty dollars.</p>
+      <p>That amount is just the base fee for staying connected to the grid. They’re not paying for power production or generation because they’re able to produce it and store it on-site.</p>
+      <p>Typically, how do you pay your power bill — online or by paper?”</p>
+    </div>
+    <div class="info">
+      <b style="display:block;margin-bottom:6px;">Why this works</b>
+      This prevents wasted time and increases trust: “If we can’t show savings, we stop.”
+    </div>
+  </details>
+</section>
+
+<!-- PART 5 -->
+<section class="card" id="part5">
+  <div class="cardTop">
+    <div>
+      <div class="kicker">Part 5</div>
+      <h2>Close (Bill Snapshot)</h2>
+      <div class="meta">Goal: micro-commitment</div>
+    </div>
+    <button class="btn" onclick="scrollToId('part6')">Next</button>
+  </div>
+
+  <div class="audioWrap">
+    <audio controls preload="none" id="audio5">
+      <source src="approach-close.m4a" type="audio/mp4">
+      Your browser does not support audio.
+    </audio>
+    <div class="row">
+      <button class="btn primary" onclick="loopSection('audio5',3)">Loop ×3</button>
+      <button class="btn" onclick="playThenNext('audio5','part6')">Play → Next</button>
+    </div>
+  </div>
+
+  <div class="keyline">
+    <span class="tag">Key line</span>
+    “Perfect. Can you grab that real quick?”
+  </div>
+
+  <details>
+    <summary>Show Script</summary>
+    <div class="script">
+      <p>“I just need to grab a quick snapshot of that bar graph, like the one I showed you on my bill. It shows us how much power you use throughout the year.</p>
+      <p>From there, our engineers can take a look at it and see exactly whether or not we can help you.</p>
+      <p>Again, do you pay your bill online or by paper?</p>
+      <p>Perfect. Can you grab that real quick?”</p>
+    </div>
+    <div class="info">
+      <b style="display:block;margin-bottom:6px;">Why this works</b>
+      You’re asking for a small action, not a decision. That’s an easy yes.
+    </div>
+  </details>
+</section>
+
+<!-- PART 6 -->
+<section class="card" id="part6">
+  <div class="cardTop">
+    <div>
+      <div class="kicker">Part 6</div>
+      <h2>Wrap-Up + Schedule</h2>
+      <div class="meta">Goal: two options + trust exit</div>
+    </div>
+    <button class="btn" onclick="scrollToId('part1')">Top</button>
+  </div>
+
+  <div class="audioWrap">
+    <audio controls preload="none" id="audio6">
+      <source src="approach-wrapup.m4a" type="audio/mp4">
+      Your browser does not support audio.
+    </audio>
+    <div class="row">
+      <button class="btn primary" onclick="loopSection('audio6',3)">Loop ×3</button>
+      <button class="btn" onclick="scrollToId('part1')">Restart</button>
+    </div>
+  </div>
+
+  <div class="keyline">
+    <span class="tag">Key line</span>
+    “Which one works better for you?”
+  </div>
+
+  <details>
+    <summary>Show Script</summary>
+    <div class="script">
+      <p>“We’re in the area helping people today. We can come back in about 45 minutes to an hour if that works for you, or we can come back tomorrow around this same time.</p>
+      <p>Which one works better for you?</p>
+      <p>Perfect. I’ll send you a quick text right now.</p>
+      <p>If for some reason we’re not able to provide you any savings upfront, you’ll receive a text letting you know that we’ll cancel the appointment and disqualify the home.</p>
+      <p>And if anything changes on your end, please just shoot us a text and let us know ahead of time.</p>
+      <p>Other than that, we’ll see you tomorrow.”</p>
+    </div>
+    <div class="info">
+      <b style="display:block;margin-bottom:6px;">Why this works</b>
+      Two options keep it moving without pressure. The cancel rule builds trust.
+    </div>
+  </details>
+</section>
+
+<footer>
+  L.O.S. • Approach Training • Audio-first • Mobile reps
+</footer>
 
 </div>
+
+<script>
+  // Coach mode toggle (persisted)
+  const coachSwitch = document.getElementById('coachSwitch');
+  const COACH_KEY = 'los_coach_mode';
+
+  function setCoach(on){
+    document.body.classList.toggle('coach', on);
+    coachSwitch.setAttribute('aria-checked', on ? 'true' : 'false');
+    localStorage.setItem(COACH_KEY, on ? '1' : '0');
+  }
+  coachSwitch.addEventListener('click', () => setCoach(!document.body.classList.contains('coach')));
+  coachSwitch.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setCoach(!document.body.classList.contains('coach')); }
+  });
+  setCoach(localStorage.getItem(COACH_KEY) === '1');
+
+  function scrollToId(id){
+    document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  // Loop a section audio N times
+  function loopSection(audioId, times){
+    const a = document.getElementById(audioId);
+    if(!a) return;
+    let count = 0;
+    a.currentTime = 0;
+    a.play();
+    a.onended = () => {
+      count++;
+      if(count < times){
+        a.currentTime = 0;
+        a.play();
+      } else {
+        a.onended = null;
+      }
+    };
+  }
+
+  // Play audio, then auto-scroll to next section (nice for training)
+  function playThenNext(audioId, nextId){
+    const a = document.getElementById(audioId);
+    if(!a) return;
+    a.currentTime = 0;
+    a.play();
+    const handler = () => {
+      a.removeEventListener('ended', handler);
+      scrollToId(nextId);
+    };
+    a.addEventListener('ended', handler);
+  }
+</script>
+
 </body>
 </html>
